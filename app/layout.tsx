@@ -19,7 +19,7 @@ export default function RootLayout({
   children,
 }: ChildrenOnly) {
   return (
-    <html lang="en">
+    <html lang="en" data-theme="cupcake">
       <SiteHeader/>
       <SiteBody>
         {children}
