@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { SiteHeader } from "@/components/site-header";
 import {ChildrenOnly} from "@/types/components_argument"
+import { cn } from "@/lib/utils";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -12,16 +13,17 @@ export const metadata: Metadata = {
 };
 
 function SiteBody({children}:ChildrenOnly) {
-  return <body className={inter.className}>{children}</body>
+  return <body className={cn("max-w-screen-2xl mx-auto border-2", inter.className)}>{children}</body>
 }
 
 export default function RootLayout({
   children,
 }: ChildrenOnly) {
   return (
-    <html lang="en" data-theme="cupcake">
-      <SiteHeader/>
+    <html lang="en" data-theme="light">
+      <head/>
       <SiteBody>
+        <SiteHeader/>
         {children}
       </SiteBody>
     </html>
