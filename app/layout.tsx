@@ -5,7 +5,7 @@ import { SiteHeader } from "@/components/site-header";
 import {ChildrenOnly} from "@/types/components_argument"
 import { cn } from "@/lib/utils";
 import { useTheme } from "next-themes";
-import { Providers } from "./providers";
+import { Providers } from "@/components/providers";
 
 const inter = Inter({ subsets: ["latin"] });
 
