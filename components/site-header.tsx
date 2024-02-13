@@ -5,11 +5,14 @@ import { Icons } from "./icons"
 import { SiteConfig } from "@/config/site-config"
 import { usePathname } from "next/navigation"
 import { cn } from "@/lib/utils"
+import { BsSearch, BsGithub , BsTwitterX, BsSun, BsMoonStars, BsCloudSun} from "react-icons/bs";
+import { useTheme } from "next-themes"
+import {useState, useEffect} from "react"
 
 export function SiteHeader() {
   // icon + home, nav docs, theme, search, github, x, modeswitch 
   return <div className="w-full bg-base-100">
-    <div className="mx-2 w-auto container flex items-center h-12 max-w-screen-2xl border-b">
+    <div className="px-4 md:px-8 w-auto container flex items-center h-12 max-w-screen-2xl border-b">
       <Nav />
       <div className="flex flex-1 items-center justify-center md:justify-end">
         <SearchBar />
@@ -29,23 +32,43 @@ function Nav() {
 
 function SearchBar() {
   return <>
-  <button className="flex flex-1 justify-start md:flex-none text-sm md:w-64 text-base-content/60 border rounded-[0.5rem] hover:bg-base-200">
-    <span className="mx-2 hidden md:inline-flex"> Search Documentations... </span>
-    <span className="mx-2 inline-flex md:hidden"> Search... </span>
+  <button className="flex flex-1 h-8 justify-start md:flex-none text-sm items-center md:w-72 text-base-content/60 border rounded-[0.5rem] hover:bg-base-200">
+    <BsSearch className="mx-2"/>
+    <span className="hidden md:inline-flex"> Search Documentations... </span>
+    <span className="inline-flex md:hidden"> Search... </span>
     <div className="flex-grow"></div>
-    <kbd className="border rounded-[0.5rem] justify-self-end w-auto font-mono text-[10pt] bg-base-200 px-1">
-        <span className="text-xs">⌘</span> k
+    <kbd className="border rounded justify-self-end w-auto font-mono text-[10pt] bg-base-200 gap-1 px-1.5 mx-1.5">
+        <span>⌘</span> k
     </kbd>
   </button>
   </>
 }
 
 function Links() {
-  return <></>
+  return <div className="flex gap-4 mx-4">
+    <BsGithub/>
+    <BsTwitterX/>
+  </div>
 }
 
 function Modeswitch() {
-  return <></>
+  const [mounted, setMounted] = useState(false)
+  const { theme, setTheme } = useTheme()
+
+  // useEffect only runs on the client, so now we can safely show the UI
+  useEffect(() => {
+    setMounted(true)
+  }, [])
+
+  if (!mounted) {
+    return null
+  }
+
+  return <div className="flex mr-2">
+    { theme == "light" && <BsSun onClick={() => {setTheme("cupcake")}}/>}
+    { theme == "cupcake" &&  <BsCloudSun onClick={() => setTheme("dark")}/>}
+    { theme == "dark" &&  <BsMoonStars onClick={() => setTheme("light")}/>}
+  </div>
 }
 
 function MainNav() {
