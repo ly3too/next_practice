@@ -53,7 +53,7 @@ function Links() {
 
 function Modeswitch() {
   const [mounted, setMounted] = useState(false)
-  const { theme, setTheme } = useTheme()
+  const { resolvedTheme, setTheme } = useTheme()
 
   // useEffect only runs on the client, so now we can safely show the UI
   useEffect(() => {
@@ -64,10 +64,11 @@ function Modeswitch() {
     return null
   }
 
+// todo: fix this
   return <div className="flex mr-2">
-    { theme == "light" && <BsSun onClick={() => {setTheme("cupcake")}}/>}
-    { theme == "cupcake" &&  <BsCloudSun onClick={() => setTheme("dark")}/>}
-    { theme == "dark" &&  <BsMoonStars onClick={() => setTheme("light")}/>}
+    { (resolvedTheme == "light" || !resolvedTheme) && <BsSun onClick={() => {setTheme("cupcake")}}/>}
+    { resolvedTheme == "cupcake" &&  <BsCloudSun onClick={() => setTheme("dark")}/>}
+    { resolvedTheme == "dark" &&  <BsMoonStars onClick={() => setTheme("light")}/>}
   </div>
 }
 
