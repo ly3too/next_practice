@@ -1,5 +1,5 @@
 import React from "react"
-import { CardsStat } from "./cards"
+import { CardsStat } from "@/components/themes/cards/stats"
 
 export default function ThemesTabs() {
     return <div className="space-y-8">

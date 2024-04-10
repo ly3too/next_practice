@@ -17,7 +17,15 @@ const config: Config = {
   },
   plugins: [require("daisyui")],
   daisyui: {
-    themes: ["light", "dark", "cupcake"],
+    themes: [
+      {
+        light : {
+          ...require("daisyui/src/theming/themes")["light"],
+          primary: "hsl(142.1 76.2% 36.3%)",
+        }
+      }, "dark", 
+      "cupcake"
+    ],
   },
 };
 export default config;
