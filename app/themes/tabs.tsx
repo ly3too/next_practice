@@ -1,6 +1,8 @@
 import React from "react"
 import { CardsStat } from "@/components/themes/cards/stats"
 import { CardTeamMember } from "@/components/themes/cards/team_member"
+import { CardCookieSetting } from "@/components/themes/cards/cookie_setting"
+import { PaymentMethod } from "@/components/themes/cards/payment_methods"
 
 export default function ThemesTabs() {
     return <div className="space-y-8">
@@ -9,6 +11,8 @@ export default function ThemesTabs() {
                 <CardsStat/>
                 <div className="grid md:grid-cols-2 gap-4">
                     <CardTeamMember/>
+                    <CardCookieSetting/>
+                    <PaymentMethod/>
                 </div>
             </div>
             <div>
